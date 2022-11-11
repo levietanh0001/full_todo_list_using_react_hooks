@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./App.css";
 import TodoInput from './components/TodoInput';
-import TodoItem from './components/TodoItem';
+import TodoItems from './components/TodoItem';
 
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
     let todoObj = { todo: newItem, complete: false };
 
     newTodoItems.splice(index, 1, todoObj);
+    // keep todo value if prompt input is empty
     if (newItem === null || newItem === "") {
       return;
     } else {
@@ -54,15 +55,14 @@ function App() {
   return ( 
     <div className="app">
       <TodoInput createTodoItem={createTodoItem} />
+
       {todoItems.map((item, index) => (
-        <TodoItem 
+        <TodoItems 
           key={index} index={index} item={item} 
           deleteTodoItem={deleteTodoItem} 
           completeTodoItem={completeTodoItem}
           updateTodoItem={updateTodoItem} 
         />
-        
-        
       ))}
       
     </div>
